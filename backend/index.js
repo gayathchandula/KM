@@ -3,15 +3,17 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 
-// const { create } = require("./functions/create");
+//admin API
+const { adminCreate } = require("./functions/admin/create");
+const { adminLogin } = require("./functions/admin/login");
 // const { getAll, getAllPaginated } = require("./functions/get");
 // const { update } = require("./functions/update");
 // const { deleteById } = require("./functions/delete");
 
+//middleware
 const app = express();
 app.use(cors());
 dotenv.config();
-//middleware
 app.use(express.json());
 
 //configure mongoose
@@ -30,7 +32,9 @@ mongoose.connect(
   }
 );
 
-// app.post("/api/create", create);
+//admin API
+app.post("/api/admin", adminCreate);
+app.post("/api/admin/login", adminLogin);
 // app.get("/api/getAll", getAll);
 // app.get("/api/getAllPaginated", getAllPaginated);
 // app.put("/api/update", update);
