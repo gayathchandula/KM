@@ -10,6 +10,7 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const { adminCreate } = require("./functions/admin/create");
 const { adminLogin } = require("./functions/admin/login");
 const { teacherRegister } = require("./functions/admin/addTeachers");
+const { getTeachers } = require("./functions/admin/getTeachers");
 
 //teacher API
 const { teacherLogin } = require("./functions/teacher/login");
@@ -21,6 +22,8 @@ const {
 
 //student API
 const { studentLogin } = require("./functions/student/login");
+const { getClass } = require("./functions/student/getClass");
+const { Assignment } = require("./functions/student/assignment");
 
 //middleware
 const app = express();
@@ -62,6 +65,7 @@ mongoose.connect(
 app.post("/api/admin", adminCreate);
 app.post("/api/admin/login", adminLogin);
 app.post("/api/admin/teacher/register", teacherRegister);
+app.get("/api/admin/teacher", getTeachers);
 
 //teacher API
 app.post("/api/teacher/login", teacherLogin);
@@ -71,10 +75,9 @@ app.get("/api/teacher/assignment/:name/:module", downloadAssignment);
 
 //student API
 app.post("/api/student/login", studentLogin);
+app.get("/api/student/class", getClass);
+app.get("/api/student/assignment/:module", Assignment);
 
-// app.get("/api/getAllPaginated", getAllPaginated);
-// app.put("/api/update", update);
-// app.delete("/api/delete/:id", deleteById);
 
 app.listen(3001, () => {
   console.log("Server is running on port 3001");

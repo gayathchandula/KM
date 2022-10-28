@@ -8,15 +8,15 @@ cloudinary.config({
 
 exports.createAssignment = async (req, res) => {
   const { name, teacher, module } = req.body;
+
+  if (!name || !teacher || !module) {
+    return res.status(400).json({
+      message: "All fields are required",
+    });
+  }
+
   try {
     const upload = await cloudinary.v2.uploader.upload(req.file.path,{ resource_type: "raw" });
-    console.log(req.file.path);
-
-    if (!name || !teacher || !module) {
-      return res.status(400).json({
-        message: "All fields are required",
-      });
-    }
 
     let reg = new Assignment({
       name: name,
