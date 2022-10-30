@@ -28,30 +28,24 @@ export default function Module() {
     <div className="bg-gray-300 h-screen">
       <Header />
       <div className="flex justify-center items-center">
-        <div className="w-max ">
+        <Accordion alwaysOpen={true} className="m-5 bg-white w-1/2">
           {data.map((item) => (
-            <Accordion alwaysOpen={true} className="m-5 bg-white">
-              <Accordion.Panel >
-                <Accordion.Title>{item.class}</Accordion.Title>
-                <Accordion.Content>
-                  <p className="mb-2 text-gray-500 ">
-                    {item.name}
-                  </p>
-                  <p className="text-gray-500 ">
-                    {item.teacher}{" "}
-                    <a
-                      href={item.file}
-                      target="_blank"
-                      className="text-blue-600 hover:underline dark:text-blue-500"
-                    >
-                      <i className="bx bxs-download"></i>
-                    </a>
-                  </p>
-                </Accordion.Content>
-              </Accordion.Panel>
-            </Accordion>
+            <Accordion.Panel className="max-w-md">
+              <Accordion.Title>{item.class}</Accordion.Title>
+              <Accordion.Content>
+                <p className="mb-2 text-gray-500 ">{item.name}</p>
+                <p className="text-gray-500 ">{item.teacher} </p>
+                <a
+                  href={item.file}
+                  target="_blank"
+                  className="text-blue-600 hover:underline dark:text-blue-500"
+                >
+                  <i className="bx bxs-download"></i>
+                </a>
+              </Accordion.Content>
+            </Accordion.Panel>
           ))}
-        </div>
+        </Accordion>
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ export default function Class() {
     <div className="bg-gray-300 h-screen">
       <Header />
       <div className="flex justify-center items-center">
-        <div className="w-ma">
+        <div className="w-1/2">
           {data.map((item) => (
             <Link
               to={{

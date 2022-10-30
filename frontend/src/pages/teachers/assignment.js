@@ -14,10 +14,12 @@ export default function Assignment() {
 
   //fetch data
   const fetchData = async () => {
-    await axios.get(`http://localhost:3001/api/student/class`).then((res) => {
-      setData(res.data);
-      setLoading(false);
-    });
+    await axios
+      .get(`http://localhost:3001/api/teacher/assignment/all`)
+      .then((res) => {
+        setData(res.data.upload);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -54,7 +56,16 @@ export default function Assignment() {
         {item.name}
       </Table.Cell>
       <Table.Cell> {item.teacher}</Table.Cell>
-      <Table.Cell> {item.code}</Table.Cell>
+      <Table.Cell>
+        {" "}
+        <a
+          href={item.file}
+          target="_blank"
+          className="text-blue-600 hover:underline dark:text-blue-500"
+        >
+          <i className="bx bxs-download"></i>
+        </a>
+      </Table.Cell>
     </Table.Row>
   );
 

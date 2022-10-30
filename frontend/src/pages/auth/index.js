@@ -26,9 +26,12 @@ export default function Login() {
 
     await axios
       .post(`http://localhost:3001/api/admin/login`, body)
-      .then(() => {
+      .then((res) => {
         setEmail("");
         setPassword("");
+        localStorage.setItem("Token", res.data.token);
+        localStorage.setItem("Role", "Admin");
+        localStorage.setItem("Auth", true);
         navigate("/admin", { replace: true });
       })
       .catch((error) => {
@@ -46,9 +49,12 @@ export default function Login() {
 
     await axios
       .post(`http://localhost:3001/api/teacher/login`, body)
-      .then(() => {
+      .then((res) => {
         setEmail("");
         setPassword("");
+        localStorage.setItem("Token", res.data.token);
+        localStorage.setItem("Role", "Teacher");
+        localStorage.setItem("Auth", true);
         navigate("/teacher", { replace: true });
       })
       .catch((error) => {
@@ -66,9 +72,12 @@ export default function Login() {
 
     await axios
       .post(`http://localhost:3001/api/student/login`, body)
-      .then(() => {
+      .then((res) => {
         setEmail("");
         setPassword("");
+        localStorage.setItem("Token", res.data.token);
+        localStorage.setItem("Role", "Student");
+        localStorage.setItem("Auth", true);
         navigate("/class", { replace: true });
       })
       .catch((error) => {

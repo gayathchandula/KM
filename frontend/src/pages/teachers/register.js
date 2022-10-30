@@ -5,7 +5,7 @@ import TableChart from "../../components/Table";
 import { Table } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 
-export default function Admin() {
+export default function Students() {
   const [data, setData] = useState([]);
   const col = ["name", "email"];
   const [loading, setLoading] = useState(true);
@@ -13,15 +13,15 @@ export default function Admin() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-
   //fetch data
   const fetchData = async () => {
-    await axios.get(`http://localhost:3001/api/admin/teacher`).then((res) => {
-      setData(res.data);
-      setLoading(false);
-    });
+    await axios
+      .get(`http://localhost:3001/api/teacher/students/all`)
+      .then((res) => {
+        setData(res.data);
+        setLoading(false);
+      });
   };
-
 
   useEffect(() => {
     fetchData();
@@ -38,7 +38,7 @@ export default function Admin() {
     };
 
     await axios
-      .post(`http://localhost:3001/api/admin/teacher/register`, body)
+      .post(`http://localhost:3001/api/teacher/students/register`, body)
       .then(() => {
         setName();
         setEmail("");
@@ -64,8 +64,7 @@ export default function Admin() {
   }
 
   return (
-    <div className="bg-gray-300 h-screen">
-      <Header />
+    <div className="">
       <div className="flex  justify-center ">
         <div className="grid grid-cols-2 gap-4 pt-24 ">
           <div className="block p-6 rounded-lg shadow-lg bg-white max-w ">

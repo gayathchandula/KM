@@ -14,8 +14,10 @@ const { getTeachers } = require("./functions/admin/getTeachers");
 
 //teacher API
 const { teacherLogin } = require("./functions/teacher/login");
+const { studentRegister, getStudents } = require("./functions/teacher/registerStudents");
 const { createClass } = require("./functions/teacher/createClass");
 const { createAssignment } = require("./functions/teacher/createAssignment");
+const { getAssignment } = require("./functions/teacher/getAssignment");
 const {
   downloadAssignment,
 } = require("./functions/teacher/downloadAssignment");
@@ -69,9 +71,12 @@ app.get("/api/admin/teacher", getTeachers);
 
 //teacher API
 app.post("/api/teacher/login", teacherLogin);
+app.post("/api/teacher/students/register", studentRegister);
+app.get("/api/teacher/students/all", getStudents);
 app.post("/api/teacher/class", createClass);
 app.post("/api/teacher/assignment", upload.single("file"), createAssignment);
 app.get("/api/teacher/assignment/:name/:module", downloadAssignment);
+app.get("/api/teacher/assignment/all", getAssignment);
 
 //student API
 app.post("/api/student/login", studentLogin);

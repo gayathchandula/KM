@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Tabs } from "flowbite-react";
 import Assignment from "./assignment";
 import Class from "./class";
+import Students  from "./register";
 import Header from "../../components/Navbar";
 
 export default function Teacher() {
@@ -17,6 +18,9 @@ export default function Teacher() {
           </Tabs.Item>
           <Tabs.Item title="Classes">
             <Class />
+          </Tabs.Item>
+          <Tabs.Item title="Students">
+            <Students />
           </Tabs.Item>
         </Tabs.Group>
       </div>
